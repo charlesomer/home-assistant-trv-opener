@@ -5,6 +5,8 @@ _Tested with the Drayton Wiser Heating System_
  - Pyscript for Home Assistant
  - Heating system needs to be integrated with Home Assistant.
 
+## Setup/Notes
+
 Once Pyscript is installed, add the script from this repo to the Pyscript folder (e.g. `volumes/home-assistant/pyscript/trv-script.py`). If you are not using the Wiser heat system, you may need to change the variables set at the beginning to work with your system.
 
 By default, this script will increase the temperature of TRVs which are above temperature to 25 degrees to force them open and will then reset them back to the schedule once all minimum temperatures have been reached. This value can be changed in the script.
