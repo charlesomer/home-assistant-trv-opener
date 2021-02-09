@@ -7,8 +7,10 @@ service_name_to_set_temperatures = "set_temperature"
 # The temperature to set TRVs to to force them open.
 temperature_used_to_open_trv = 25
 
-attribute_to_check_trv       = "preset_mode"
-attribute_to_check_trv_value = "boost"
+attribute_trv_when_manually_opened = "preset_mode"
+attribute_trv_when_manually_opened_value = "Override"
+
+attribute_demand_check = "percentage_demand"
 
 service_to_use_to_reset_trvs       = "set_preset_mode"
 service_to_use_to_reset_trvs_value = "Cancel Boost"
@@ -32,7 +34,8 @@ def trv_monitor():
 
     if (
       current_temperature < target_temperature and
-      attributes[attribute_to_check_trv] == attribute_to_check_trv_value
+      attributes[attribute_trv_when_manually_opened] != attribute_trv_when_manually_opened_value and
+      attributes[attribute_demand_check] > 0
     ):
       isHeatingRequired = True
       # There is a TRV which should be heating, we can now exit this loop
@@ -53,7 +56,8 @@ def trv_monitor():
       # temperature to force the TRV open.
       if (
         current_temperature > target_temperature and
-        attributes[attribute_to_check_trv] != attribute_to_check_trv_value
+        attributes[attribute_trv_when_manually_opened] != attribute_trv_when_manually_opened_value and
+        attributes[attribute_demand_check] == 0
       ):
         service.call("climate", service_name_to_set_temperatures,
           entity_id=room,
@@ -66,7 +70,9 @@ def trv_monitor():
     # back to their defaults.
     for room in trv_rooms:
       attributes = state.getattr(room)
-      if attributes[attribute_to_check_trv] != attribute_to_check_trv_value:
+      if (
+        attributes[attribute_trv_when_manually_opened] == attribute_trv_when_manually_opened_value
+      ):
         service.call("climate", service_to_use_to_reset_trvs,
           entity_id=room,
           preset_mode=service_to_use_to_reset_trvs_value
