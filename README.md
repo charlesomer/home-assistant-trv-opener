@@ -19,13 +19,13 @@ To run every minute:
  3. Automations
  4. Add Automation
  5. Start with an empty automation
- 6. Edit via the YAML and use something like this:
+ 6. Edit via the YAML and use something like this or configure using the GUI (using time pattern).
  ```
 alias: TRV Monitor
 description: ''
 trigger:
 - platform: time_pattern
-    minutes: /1
+    minutes: /5
 condition: []
 action:
 - service: pyscript.trv_monitor

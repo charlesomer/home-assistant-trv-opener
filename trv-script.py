@@ -5,7 +5,10 @@ target_temperature_identifier  = "temperature"
 service_name_to_set_temperatures = "set_temperature"
 
 # The temperature to set TRVs to to force them open.
-temperature_used_to_open_trv = 25
+# I've found that 21 degrees is a good balance between forcing them open
+# and rooms getting too hot but this may need adjusting based on your
+# preference.
+temperature_used_to_open_trv = 21
 
 attribute_trv_when_manually_opened = "preset_mode"
 attribute_trv_when_manually_opened_value = "Override"
