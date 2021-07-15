@@ -24,12 +24,11 @@ To run every 5 minutes:
 alias: TRV Monitor
 description: ''
 trigger:
-- platform: time_pattern
+  - platform: time_pattern
     minutes: /5
 condition: []
 action:
-- service: pyscript.trv_monitor
-    data: {}
+  - service: pyscript.trv_monitor
 mode: single
  ```
 You may need to go to Developer Tools > Services > Look for `Pyscript.reload` and call this service before the `trv_monitor` function appears.
