@@ -13,7 +13,7 @@ By default, this script will increase the temperature of TRVs which are above te
 
 Then, Home Assistant needs to know when to run this script. For now, I am running it every 5 minutes but it would be nicer if it could be run only when the TRVs detect a change in temperature for example.
 
-To run every minute:
+To run every 5 minutes:
  1. Navigate to the Home Assistant GUI
  2. Configuration
  3. Automations
