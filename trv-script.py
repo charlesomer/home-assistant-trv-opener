@@ -86,7 +86,7 @@ def trv_monitor():
     log.info("Heating is not required.")
     # Make sure to reset any TRVs that were previously set to a high
     # back to their defaults.
-    for room in trv_rooms:
+    for room in literal_eval(pyscript.script_boosted_entities):
       attributes = state.getattr(room)
       service.call("climate", service_to_use_to_reset_trvs,
         entity_id=room,
